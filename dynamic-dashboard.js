@@ -1,4 +1,3 @@
-
 import wixData from 'wix-data';
 import wixLocation from 'wix-location';
 
@@ -27,12 +26,10 @@ $w('#submitButton').onClick(() => {
             "price": price,
 			"isActive": isActive
         };
-        wixData.insert("Subs", newSub)
-        .then((result) => {
+        wixData.insert("Subs", newSub).then((result) => {
             console.log("Subscription Added:", result);
             wixLocation.to(wixLocation.url);
-        })
-        .catch((err) => {
+        }).catch((err) => {
             console.log("Error during sub addition:", err);
         });
     }
@@ -67,12 +64,7 @@ $w('#submitButtonChange').onClick((event) => {
         "price": price,
         "isActive": isActive
     };
-    wixData.query("Subs")
-    .eq("name", currentRow.name)
-    .eq("price", currentRow.price)
-    .eq("isActive", currentRow.isActive)
-    .find()
-    .then((results) => {
+    wixData.query("Subs").eq("name", currentRow.name).eq("price", currentRow.price).eq("isActive", currentRow.isActive).find().then((results) => {
         currentRow.subName = updatedSub.subName;
         currentRow.price = updatedSub.price;
         currentRow.isActive = updatedSub.isActive;
@@ -86,8 +78,7 @@ $w('#submitButtonChange').onClick((event) => {
 
 $w('#deleteSub').onClick((event) => {
     let currentSet = $w('#dataset1').getCurrentItem()._id
-    wixData.remove("Subs", currentSet)
-    .then((results) => {
+    wixData.remove("Subs", currentSet).then((results) => {
         console.log(results);
         wixLocation.to(wixLocation.url);
     })
