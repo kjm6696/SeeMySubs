@@ -11,7 +11,7 @@ $w('#loginButton').onClick(() => {
     const password = $w('#passwordField').value;
 
     // if no email, no password, or no name DONT PASS
-    if (email && password ) {
+    if (email.includes("@") && password ) {
 
         //Wix data query to search for desired account
         wixData.query("Users")
