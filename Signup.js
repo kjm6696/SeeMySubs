@@ -12,7 +12,7 @@ $w('#signupButton').onClick(() => {
     const password = $w('#passwordField').value;
 
     //check for empty fields
-    if (email && password && name && lastName) {
+    if (email.includes("@") && password && name && lastName) {
 
         //create table to create new user
         const newUser = {
