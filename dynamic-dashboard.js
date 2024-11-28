@@ -3,7 +3,7 @@ import wixData from 'wix-data';
 // Wix location library to travel throughout pages.
 import wixLocation from 'wix-location';
 
-//variable to store current row table
+//variable to store current row tabl
 let currentRow;
 
 //action listener for add button to unhide elements
@@ -137,4 +137,32 @@ $w('#deleteSub').onClick((event) => {
     .catch((err) => {
         console.log(err);
     })
+})
+
+$w('#calcButton').onClick((event) => {
+    if ($w('#calcWidget').hidden)  {
+        $w('#calcWidget').show();
+    }
+})
+
+// action listener for the calculate now button
+$w('#costButton').onClick((event) => {
+    // vairables to init.
+    let curPrice = 0;
+    let curItem;
+    // query subs collection for assigned user subs
+    wixData.query("Subs")
+    .eq("name", $w('#userText').text)
+
+    .find().then((results) => {
+        // loop through the items
+        for (let i = 0; i < results.length; i++ ){
+            // make string to int to show value
+            curItem = parseInt(results.items[i].price);
+            //add items together
+            curPrice = curPrice + curItem;
+        }
+        //update the "$" to the 
+        $w('#costPriceText').text = "$" + curPrice.toString();
+    })    
 })
